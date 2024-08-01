@@ -4,23 +4,23 @@ using namespace std;
 typedef long long ll;
 
 
-ll mod(ll a, ll m) {
-  return ((a%m) + m) % m;
+ll mod(ll a, ll m) {						// a (mod m) 반환 
+  return ((a % m) + m) % m;					// 값이 음수 나오는 것 방지 
 }
 
-ll extEuclid(ll a, ll b, ll &x, ll &y) {
+ll extEuclid(ll a, ll b, ll &x, ll &y) {	// 확장된 유클리드 호제법 
   ll xx = y = 0;
   ll yy = x = 1;
   while (b) {
-    ll q = a/b;
-    tie(a, b) = make_tuple(b, a%b);
-    tie(x, xx) = make_tuple(xx, x-q*xx);
-    tie(y, yy) = make_tuple(yy, y-q*yy);
+    ll q = a / b;
+    tie(a, b) = make_tuple(b, a % b);
+    tie(x, xx) = make_tuple(xx, x - q * xx);
+    tie(y, yy) = make_tuple(yy, y - q * yy);
   }
   return a;
 }
 
-ll modInverse(ll b, ll m) {           
+ll modInverse(ll b, ll m) {           		// 곱셈 역원 계산 
   ll x, y;
   ll d = extEuclid(b, m, x, y);           
   if (d != 1) return -1;                      
