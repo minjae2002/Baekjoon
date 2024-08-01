@@ -1,25 +1,25 @@
 // 그냥 배열로 하니까 시간 초과되므로 Fenwick Tree 사용 
-#include <bits/stdc++.h>
-  
+#include <bits/stdc++.h>  
 using namespace std;
 
 #define MAXN 100002
+typedef long long ll;
 
-long long Ftree[MAXN];
+ll Ftree[MAXN];
 int N, Q;
 
-void update(int y, long long v){
+void update(int y, ll v){
     while(y <= N){
         Ftree[y] += v;
-        y += (y&-y);
+        y += (y & -y);
     }
 }
 
-long long getSum(int v){
-    long long ret = 0;
+ll getSum(int v){
+    ll ret = 0;
     while(v > 0){
         ret += Ftree[v];
-        v -= (v&-v);
+        v -= (v & -v);
     }
     return ret;
 }
@@ -27,18 +27,17 @@ long long getSum(int v){
 int main(){
     scanf("%d %d", &N, &Q);
 
-    long long num, diff;
-    for(int i=1; i<=N; i++){
+    ll num, diff;
+    for(int i = 1; i <= N; i++){
         scanf("%lld", &num);
         update(i, num);
     }
 
-    for(int i=0, x, y, a, b; i<Q; i++){
+    for(int i = 0, x, y, a, b; i < Q; i++){
         scanf("%d %d %d %d", &x, &y, &a, &b);
-        printf("%lld\n", getSum(max(x,y))-getSum(min(x,y)-1));
-        diff = b-(getSum(a)-getSum(a-1));
+        printf("%lld\n", getSum(max(x, y)) - getSum(min(x, y) - 1));
+        diff = b - (getSum(a) - getSum(a-1));
         update(a, diff);
     }
-
     return 0;
 }
