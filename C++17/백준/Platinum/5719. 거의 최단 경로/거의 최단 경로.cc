@@ -88,11 +88,6 @@ int main(){
         if (almost[D] == INF) printf("-1\n");
         else printf("%d\n", almost[D]);
 
-        for (int i = 0; i < 2; i++){
-            for (int j = 0; j < MAXN; j++){
-
-            }
-        }
     }
     
     return 0;
